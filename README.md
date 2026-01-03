@@ -34,6 +34,19 @@ uvicorn app.main:app --reload
 
 The repository includes a CSV file (`app/services/netflix.csv`) containing movie data. When the project starts up, this data is automatically loaded into the database if the database is empty. Once loaded, all movie data is available through the API endpoints.
 
+## Authentication
+
+The API includes authorization logic. To access movie endpoints, you must first authenticate:
+
+1. **Register** a new user at `/auth/register`
+2. **Login** at `/auth/login` to receive an access token
+3. Use the access token in the Authorization header when making requests to movie endpoints
+
+All movie endpoints (`/movies/*`) require authentication. Include the token in the request header:
+```
+Authorization: Bearer <your_access_token>
+```
+
 ## API Documentation
 
 Once the server is running, you can access the interactive API documentation at:
